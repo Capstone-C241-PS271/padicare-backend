@@ -1,7 +1,8 @@
-__pycache__/*
+/__pycache__
 .pytest_cache/*
 .coverage
 .DS_Store
 .idea/*
 .vscode
 .venv
+.env

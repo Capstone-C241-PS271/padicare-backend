@@ -9,16 +9,26 @@ This project is a backend application for Padicare, developed using Flask. The a
 To run this application, you need to install the following dependencies:
 
 ```plaintext
+alembic==1.13.1
 bcrypt==4.1.3
 blinker==1.8.2
+cffi==1.16.0
 click==8.1.7
+cryptography==42.0.7
 Flask==3.0.3
-Flask-Bcrypt==1.0.1
+Flask-Migrate==4.0.7
+Flask-SQLAlchemy==3.1.1
 itsdangerous==2.2.0
 Jinja2==3.1.4
+jwcrypto==1.5.6
+Mako==1.3.5
 MarkupSafe==2.1.5
 psycopg2-binary==2.9.9
+pycparser==2.22
 PyJWT==2.8.0
+python-dotenv==1.0.1
+SQLAlchemy==2.0.30
+typing_extensions==4.12.1
 Werkzeug==3.0.3
 ```
 
@@ -57,40 +67,57 @@ Replace `xxxx` with the desired port number.
 
 ```plaintext
 padicare-backend/
-├── __pycache__/
-├── .venv/
-├── .vscode/
 ├── controller/
-│   ├── __init__.py
-│   └── example_controller.py
+│   ├── __pycache__/
+│   ├── .gitignore
+│   ├── post_urls.py
+│   └── user_urls.py
 ├── design/
-│   ├── __init__.py
-│   └── example_design.py
+│   ├── .gitignore
+│   ├── architecture.png
+│   └── database.png
+├── entity/
+│   ├── __pycache__/
+│   ├── .gitignore
+│   ├── base.py
+│   ├── comment.py
+│   ├── post.py
+│   ├── prediction.py
+│   └── user.py
 ├── middleware/
-│   ├── __init__.py
-│   └── example_middleware.py
-├── repository/
-│   ├── __init__.py
-│   └── example_repository.py
-├── service/
-│   ├── __init__.py
-│   └── example_service.py
+│   ├── __pycache__/
+│   ├── .gitignore
+│   └── authentication_required.py
+├── utils/
+│   ├── __pycache__/
+│   ├── .gitignore
+│   └── jwt.py
 ├── .gitignore
 ├── app.py
 ├── README.md
 └── requirements.txt
 ```
 
+To update the API endpoints section of the README file to reflect the new handlers provided in your code, I'll add the endpoints for both users and posts, including their descriptions and methods. Here is the updated "API Endpoints" section:
+
 ## API Endpoints
 
-Here are some of the main API endpoints provided by the application:
+### User Endpoints
 
 - `GET /api/users` - Retrieve a list of users
-- `POST /api/users` - Create a new user
-- `GET /api/users/<id>` - Retrieve a specific user by ID
-- `PUT /api/users/<id>` - Update a user by ID
-- `DELETE /api/users/<id>` - Delete a user by ID
-- `POST /api/login` - Authenticate a user and return a token
+- `POST /api/users/login` - Authenticate a user and return a token
+- `POST /api/users/register` - Create a new user
+- `GET /api/users/me` - Retrieve the authenticated user's information
+
+### Post Endpoints
+
+- `GET /api/posts` - Retrieve a list of posts
+- `POST /api/posts/post` - Create a new post
+- `GET /api/posts/post/<int:post_id>` - Retrieve a specific post by ID
+- `PUT /api/posts/post/<int:post_id>` - Update a post by ID
+- `DELETE /api/posts/post/<int:post_id>` - Delete a post by ID
+- `GET /api/posts/post/<int:post_id>/comments` - Retrieve comments for a specific post by post ID
+- `POST /api/posts/post/<int:post_id>/comment` - Create a comment for a specific post
 
 For a complete list of endpoints and their descriptions, please refer to the API documentation.
 
