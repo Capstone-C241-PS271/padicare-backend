@@ -10,29 +10,29 @@ post_urls = Blueprint('post', __name__)
 
 @post_urls.get('/')
 @authentication_required
-def index():
+def index(user):
     posts = db.session.execute(db.select(Post)).scalars().all()
     posts = [post.serialize() for post in posts]
 
     return jsonify({"data": posts})
 
 
-@post_urls.post('/post')
+@post_urls.post('/')
 @authentication_required
-def create_post(claims):
+def create_post(user):
     json_data = request.get_json()
     title = json_data['title']
     content = json_data['content']
 
-    post = Post(author_id=claims['id'], title=title, content=content)
+    post = Post(author_id=user['id'], title=title, content=content)
     db.session.add(post)
     db.session.commit()
 
     return jsonify({"message": "Post created successfully"})
 
-@post_urls.get('/post/<int:post_id>')
+@post_urls.get('/<int:post_id>')
 @authentication_required
-def get_post(post_id):
+def get_post(user, post_id):
     post = db.session.query(Post).filter(Post.id == post_id).first()
 
     if post:
@@ -44,9 +44,9 @@ def get_post(post_id):
             mimetype='application/json'
         )
 
-@post_urls.put('/post/<int:post_id>')
+@post_urls.put('/<int:post_id>')
 @authentication_required
-def update_post(claims, post_id):
+def update_post(user, post_id):
     json_data = request.get_json()
     title = json_data['title']
     content = json_data['content']
@@ -67,9 +67,9 @@ def update_post(claims, post_id):
         )
     
 
-@post_urls.delete('/post/<int:post_id>')
+@post_urls.delete('/<int:post_id>')
 @authentication_required
-def delete_post(claims, post_id):
+def delete_post(user, post_id):
     post = db.session.query(Post).filter(Post.id == post_id).first()
 
     if post:
@@ -85,9 +85,9 @@ def delete_post(claims, post_id):
         )
     
 
-@post_urls.get('/post/<int:post_id>/comments')
+@post_urls.get('/<int:post_id>/comments')
 @authentication_required
-def get_comments(post_id):
+def get_comments(user, post_id):
     comments = db.session.query(Comment).filter(Comment.post_id == post_id).all()
 
     if comments:
@@ -101,13 +101,13 @@ def get_comments(post_id):
         )
     
 
-@post_urls.post('/post/<int:post_id>/comment')
+@post_urls.post('/<int:post_id>/comment')
 @authentication_required
-def create_comment(claims, post_id):
+def create_comment(user, post_id):
     json_data = request.get_json()
     content = json_data['content']
 
-    comment = Comment(post_id=post_id, author_id=claims['id'], content=content)
+    comment = Comment(post_id=post_id, author_id=user['id'], content=content)
     db.session.add(comment)
     db.session.commit()
 

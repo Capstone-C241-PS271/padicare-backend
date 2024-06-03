@@ -10,5 +10,5 @@ app.config.from_object(config[os.getenv("CONFIG_MODE")])
 
 db.init_app(app)
 
-app.register_blueprint(user_urls)
-app.register_blueprint(post_urls)
+app.register_blueprint(user_urls, url_prefix='/api/users')
+app.register_blueprint(post_urls, url_prefix='/api/posts')

@@ -2,7 +2,7 @@ from .base import db, BaseModel
 from sqlalchemy.orm import relationship
 
 class Comment(BaseModel):
-    __tablename__ = db.metadata.tables['comment']
+    __tablename__ = 'comment'
     
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

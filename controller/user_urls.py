@@ -18,7 +18,7 @@ def index():
     return jsonify({"data": users})
 
 
-@user_urls.route('/login', methods=['POST'])
+@user_urls.post('/login')
 def login():
     json_data = request.get_json()
     username = json_data['username']
@@ -50,7 +50,7 @@ def login():
         )
     
 
-@user_urls.route('/register', methods=['POST'])
+@user_urls.post('/register')
 def register():
     json_data = request.get_json()
     name = json_data['name']
