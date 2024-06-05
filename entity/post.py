@@ -8,9 +8,6 @@ class Post(BaseModel):
     title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
 
-    author = relationship("User", back_populates="posts")
-    comments = relationship("Comment", back_populates="post")
-
     def serialize(self):
         return {
             'id': self.id,

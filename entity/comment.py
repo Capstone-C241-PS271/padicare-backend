@@ -8,9 +8,6 @@ class Comment(BaseModel):
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     content = db.Column(db.Text, nullable=False)
 
-    post = relationship("Post", back_populates="comments")
-    author = relationship("User", back_populates="comments")
-
     def serialize(self):
         return {
             'id': self.id,
