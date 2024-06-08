@@ -2,10 +2,7 @@ import os
 from .model import load_model, preprocess_image
 import numpy as np
 
-
-model_path = os.getcwd() + '/padicare_model.h5'
-
-model = load_model(model_path)
+model = load_model(os.environ.get('MODEL_PATH'))
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 class_names = ['BACTERIALBLIGHT', 'BLAST', 'BROWNSPOT', 'HEALTHY', 'TUNGRO']
