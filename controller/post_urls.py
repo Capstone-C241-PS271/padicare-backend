@@ -11,7 +11,7 @@ post_urls = Blueprint('post', __name__)
 @post_urls.get('/')
 @authentication_required
 def index(user):
-    posts = db.session.execute(db.select(Post)).scalars().all()
+    posts = db.session.query(db.select(Post)).filter(Post.id > 0).all()
     posts = [post.serialize() for post in posts]
 
     return jsonify({"data": posts})

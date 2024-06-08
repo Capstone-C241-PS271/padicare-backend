@@ -9,7 +9,7 @@ prediction_urls = Blueprint('predictions', __name__)
 @prediction_urls.route('/')
 @authentication_required
 def index(user):
-    predictions = db.session.query(Prediction).filter(Prediction.user_id == user['id']).all()
+    predictions = db.session.query(Prediction).filter(Prediction.author_id == user['id']).all()
     predictions = [prediction.serialize() for prediction in predictions]
 
     return jsonify({"data": predictions})
