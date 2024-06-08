@@ -13,3 +13,6 @@ db.init_app(app)
 app.register_blueprint(user_urls, url_prefix='/api/users')
 app.register_blueprint(post_urls, url_prefix='/api/posts')
 app.register_blueprint(prediction_urls, url_prefix='/api/predictions')
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=os.environ.get("PORT", 8080))
