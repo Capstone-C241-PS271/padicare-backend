@@ -35,7 +35,8 @@ recommendations = {
         "3. Terapkan sanitasi lahan dengan baik dan buang tanaman yang terinfeksi.\n"
         "4. Lakukan rotasi tanaman dengan tanaman non-padi untuk mengurangi sumber infeksi.\n"
         "5. Pantau populasi wereng secara rutin dan ambil tindakan pengendalian yang diperlukan."
-    )
+    ),
+    'HEALTHY': "Tanaman padi anda dalam kondisi sehat, tetap jaga kebersihan lahan dan lakukan pemeliharaan secara berkala."
 }
 
 def predict(image: str):
