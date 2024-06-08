@@ -5,7 +5,7 @@ class Prediction(BaseModel):
     __tablename__ = 'prediction'
     
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    image = db.Column(db.String(255))
+    image = db.Column(db.Text)
     result = db.Column(db.String(255))
     suggestion = db.Column(db.Text)
 
