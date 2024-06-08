@@ -11,7 +11,7 @@ def authentication_required(f):
         if not token:
             return jsonify({'error': 'token is missing'}), 401
         try:
-            claims = jwt.decode(token.replace('Bearer ', ''), os.getenv("JWT_SECRET_KEY"), ['HS256'])
+            claims = jwt.decode(token.replace('Bearer ', ''), os.environ.get("JWT_SECRET_KEY"), ['HS256'])
         except Exception as error:
             print(error)
             return jsonify({'error': 'token is invalid/expired'})
