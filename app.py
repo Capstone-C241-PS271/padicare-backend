@@ -10,6 +10,7 @@ app = Flask(__name__)
 app.config.from_object(config[os.environ.get('CONFIG_MODE', 'production')])
 db.init_app(app)
 
+os.environ['MODEL_PATH'] = os.getcwd() + '/padicare_model.h5'
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getcwd() + '/padicare-425808-c532d4b386da.json'
 
 app.register_blueprint(user_urls, url_prefix='/api/users')

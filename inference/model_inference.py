@@ -2,10 +2,8 @@ import os
 from .model import load_model, preprocess_image
 import numpy as np
 
-model_path = os.environ.get("MODEL_PATH")
 
-if not model_path:
-    model_path = os.getcwd() + '/padicare_model.h5'
+model_path = os.getcwd() + '/padicare_model.h5'
 
 model = load_model(model_path)
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
