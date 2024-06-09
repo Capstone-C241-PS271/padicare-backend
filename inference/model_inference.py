@@ -2,7 +2,7 @@ import os
 from .model import load_model, preprocess_image
 import numpy as np
 
-model = load_model(os.environ.get('MODEL_PATH'))
+model = load_model(os.getcwd() + '/model.keras')
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 class_names = ['BACTERIALBLIGHT', 'BLAST', 'BROWNSPOT', 'HEALTHY', 'TUNGRO']

@@ -5,7 +5,7 @@ from io import BytesIO
 from PIL import Image
 
 def load_model(model_path):
-    model = models.load_model(model_path)
+    model = models.load_model(model_path, compile=False)
     return model
 
 def preprocess_image(image: str):
