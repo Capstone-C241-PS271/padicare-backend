@@ -1,0 +1,20 @@
+FROM python:3.10.12-bullseye
+
+WORKDIR /usr/src/app
+
+COPY requirements.txt ./
+
+ENV BASE_PATH=/usr/src/app
+ENV JWT_SECRET_KEY=jn4cbdf.fnrffhvr
+ENV CONFIG_MODE=development
+ENV BUCKET_NAME=buckets-padicare
+ENV DEVELOPMENT_DATABASE_URL=postgresql+psycopg2://postgres:root@localhost:5432/padicare
+
+
+RUN pip install -r requirements.txt
+
+COPY . .
+
+CMD ["python", "app.py"]
+
+EXPOSE 8080
