@@ -8,12 +8,14 @@ class Post(BaseModel):
     title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
 
+    author = relationship('User')
+
     def serialize(self):
         return {
             'id': self.id,
-            'author_id': self.author_id,
             'title': self.title,
             'content': self.content,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
+            'author': self.author.name
         }

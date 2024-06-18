@@ -4,14 +4,11 @@ from entity.base import db
 from controller.user_urls import user_urls
 from controller.post_urls import post_urls
 from controller.prediction_urls import prediction_urls
-import subprocess
 import os
 
 app = Flask(__name__) 
-app.config.from_object(config[os.getenv(key='CONFIG_MODE', default='production')])
+app.config.from_object(config[os.getenv('CONFIG_MODE', 'production')])
 db.init_app(app)
-
-subprocess.run(['ls', '-l'])
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getcwd() + '/serviceaccounts/padicare-425808-c532d4b386da.json'
 
